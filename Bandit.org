@@ -2,5 +2,17 @@
 #+AUTHOR: Frank Gerold
 #+DESCRIPTION: Introduction / Tutorial to Wargames and linux security concepts
 
-* Bandit
-** Info
+* Info
+- First game on Over The Wire
+- For absolute beginners
+- teaches how to play wargames
+- Each level has specific objective, and bash command hints for completing the task
+- Beating a level results in instructions on how to access next level
+- 34 levels total
+
+* Walkthrough
+
+** Level 1
+
+
+* Random Notes
