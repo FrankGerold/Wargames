@@ -1,9 +1,11 @@
 #+TITLE: Bandit
 #+AUTHOR: Frank Gerold
-#+DESCRIPTION: Introduction / Tutorial to Wargames and linux security concepts
+#+DESCRIPTION: Introduction / Tutorial to Wargames and linux security concepts.
+#+DATE: <2021-02-06 Sat>
 
 * Info
 - First game on Over The Wire
+  + https://overthewire.org/wargames/bandit/
 - For absolute beginners
 - teaches how to play wargames
 - Each level has specific objective, and bash command hints for completing the task
@@ -12,7 +14,15 @@
 
 * Walkthrough
 
+** Level 0
+
 ** Level 1
+
+** Password Table
+| Level | Password | Note |
+|-------+----------+------|
+|     1 |          |      |
+|     0 |          |      |
 
 
 * Random Notes
