@@ -70,6 +70,11 @@
 
 ** Level 5
 - ~inhere~ dir of files, only one human readable
+- Used ~file~
+  + tries to determine the type of a given file (or list of files)
+  + Tricky here because al the files in the directory start with ~-f~ which is already specific flag for file!
+    - doesnt like being given the names of the files directly
+
 - Used ~find~
   + Find recursively descends the directory tree
     - can be filtered w/ regex (i didnt)
@@ -94,7 +99,73 @@
 
 
 ** Level 6
+- Directory of directories with many files in each
+- password file is:
+  + human-readable
+  + 1033 bytes in size
+  + not executable
+- Tried Find first
+  + Went with file size first which is the
+    - ~-size~ flag
+    - size in bytes uses ~c~ suffix
+    - SO: ~find -size 1033c~
+      + only one file returned!
+        - ~~/inhere/maybehere07/.file2~
+- ~DXjZPULLxYr17uwoI01bNLQbtFemEgo7~
 
+** 7
+- somewhere on the server
+  + owned by user bandit7
+  + owned by group bandit6
+  + 33 bytes in size
+- Continuing ~find~ trend:
+  + move to root to search whole server ~cd /~
+  + ~find -size 33c -user bandit7 -group bandit6~ matches all 3 criteria
+    - big list of "permission denied" and "no such file or directory", should probably filter out these results (i didnt)
+    - real file towards end of this list
+- ~./var/lib/dpkg/info/bandit7.password~ was the file
+-
+
+** 8
+- giant file data.txt, lines consisting of a word followed by a password-looking string
+- Line of interest here has word "millionth"
+- ~grep millionth data.txt~
+- cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
+** 9
+- Long text file ~data.txt~
+  + each line is password-ish
+  + tons of repeated lines
+- Password is only line not repeated in file.
+- ~uniq~ command
+  + compares each line to adjacent lines and outputs each unique line
+  + ~-c~ flag prepends each with a count of total occurances
+  + ~-u~ flag returns only lines without repetitions
+  + Tricky here because lines occur at random so the default adjacent-line comparison is useless
+- ~sort~ command
+  + sorts lines of given input.
+  + used here so that it would bundle all the repeated lines, for uniq to actually become useful on
+- ~sort data.txt | uniq -u~
+  + returns the only line that does not repeat at all in the file
+- ~UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR~
+
+** 10
+- Big unreadable text file, sprinkled with random human-readable strings
+- password is readable and preceded by a series of ~=~ characters
+- ~strings~ command
+  + searches input for ascii text strings
+- ~grep~
+  + to grab the = lines
+  + single = not strict enough, lots of random = chars in the various strings
+- ~strings data.txt | grep ==~
+  + ========== the*2i"4
+    ========== password
+    Z)========== is
+    &========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+- ~truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk~
+
+** 11
+-
 
 ** Password Table
 | Level | Password                         | Note       |
@@ -105,6 +176,13 @@
 |     3 | UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK |            |
 |     4 | pIwrPrtPN36QITSp3EQaw936yaFoFgAB |            |
 |     5 | koReBOKuIDDepwhWk7jZC0RTdopnAYKh |            |
+|     6 | DXjZPULLxYr17uwoI01bNLQbtFemEgo7 |            |
+|     7 | HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs |            |
+|     8 | cvX2JJa4CFALtqS87jk27qwqGhBM9plV |            |
+|     9 | UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR |            |
+|    10 | truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk |            |
 
 
 * Random Notes
+- i should practice filtering noise out of the outputs automatically
+  + return just the password strings
