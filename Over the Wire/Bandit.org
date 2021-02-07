@@ -159,9 +159,13 @@
   + single = not strict enough, lots of random = chars in the various strings
 - ~strings data.txt | grep ==~
   + ========== the*2i"4
+
     ========== password
+
     Z)========== is
+
     &========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
 - ~truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk~
 
 ** 11
